@@ -8,7 +8,7 @@ const BreadCrumbs = () => {
   return (
     <nav>
       {segments.map((segment) => (
-        <span key={new Date().getSeconds()}>
+        <span key={segment}>
           {segment === "" ? "> / " : " > "}
           {segment}
         </span>
