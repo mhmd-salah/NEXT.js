@@ -5,6 +5,7 @@ import ThemeProvider from "@/components/theme-provider";
 import TokenProvider from "@/components/token-provider";
 import BreadCrumbs from "@/components/shared/BreadCrumbs";
 import { after } from "node:test";
+import Providers from "@/components/context/shared/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +37,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <BreadCrumbs />
-          {children}
+          <Providers>{children}</Providers>
         </body>
       </TokenProvider>
     </html>

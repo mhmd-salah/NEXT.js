@@ -1,4 +1,4 @@
-import { ApiResult } from "@/lib/types/api";
+import { ApiResult } from "../types/api";
 
 export async function apiRequest<T>(url: string): Promise<ApiResult<T>> {
   try {

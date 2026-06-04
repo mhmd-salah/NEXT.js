@@ -1,13 +1,13 @@
-import { getPosts } from "@/lib/api/posts/posts.api";
-import React from "react";
+import PostList from "@/components/posts/post-list";
+import React, { Suspense } from "react";
 
-const PostsPage = async () => {
-  const payloadPosts = await getPosts();
+const PostsPage = () => {
   return (
     <>
-      {payloadPosts.posts.map((post) => (
-        <li key={post.id}>{post.title}</li>
-      ))}
+      <h1>Post Page </h1>
+      <Suspense fallback={<h1>Posts loading</h1>}>
+        <PostList />
+      </Suspense>
     </>
   );
 };
