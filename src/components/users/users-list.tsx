@@ -1,16 +1,21 @@
 "use client";
-import { ApiResult } from "@/lib/types/api";
-import { IUser } from "@/lib/types/users";
+import { IUsersResponse } from "@/lib/types/users";
 import React, { use } from "react";
 
 interface IProps {
-  userPromise: Promise<ApiResult<IUser[]>>;
+  userPromise: Promise<IUsersResponse>;
 }
 
 const UserList = ({ userPromise }: IProps) => {
-  const usersR = use(userPromise);
-  console.log(usersR.data);
-  return <div>users-list</div>;
+  const usersResponse = use(userPromise);
+  console.log(usersResponse.users);
+  return (
+    <div>
+      {usersResponse.users.map((user) => (
+        <li key={user.id}>{user.firstName}</li>
+      ))}
+    </div>
+  );
 };
 
 export default UserList;

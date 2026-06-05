@@ -6,12 +6,11 @@ import { getPosts } from "@/lib/api/posts/posts.api";
 import React from "react";
 
 const PostList = async () => {
-  const [{ posts }, commentsPayload] = await Promise.all([
-    getPosts(),
-    getComments(),
-  ]);
-  console.log(commentsPayload);
-  // const { posts } = await getPosts();
+  // const [{ posts }, commentsPayload] = await Promise.all([
+  //   getPosts(),
+  //   getComments(),
+  // ]);
+  const { posts } = await getPosts();
 
   // const crimePosts = posts.find((post) => post.tags.includes("crime"));
   // if (!crimePosts) {
