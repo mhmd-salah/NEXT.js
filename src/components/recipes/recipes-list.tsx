@@ -1,26 +1,33 @@
 "use client";
 
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 
-interface IRecipe {
+export interface IRecipe {
   id: number;
   name: string;
   description: string;
 }
 
-const RecipesList = () => {
-  const { data: recipes } = useSuspenseQuery({
+interface IProps {
+  recipesPromise: Promise<IRecipe[]>;
+}
+
+const RecipesList = ({ recipesPromise }: IProps) => {
+  const [enabled, setEnabled] = useState(false);
+  const { data: recipes } = useQuery({
     queryKey: ["recipes"],
     queryFn: async () => {
-      await new Promise((res) => setTimeout(res, 4000));
-      const res = await fetch("https://dummyjson.com/recipes");
+      const res = await fetch("/api/recipes");
       const data: { recipes: IRecipe[] } = await res.json();
       return data?.recipes;
     },
+    enabled,
   });
+  // const recipes = use(recipesPromise);
   return (
     <div>
+      <button onClick={() => setEnabled((prev) => !prev)}>enable</button>
       {recipes?.map((recipe) => (
         <li key={recipe.id}>{recipe.name}</li>
       ))}
