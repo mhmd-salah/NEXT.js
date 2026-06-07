@@ -29,5 +29,4 @@ export async function loginAction(formdata: FormData) {
     });
   }
 
-  return data;
 }

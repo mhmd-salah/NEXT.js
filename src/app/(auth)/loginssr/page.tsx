@@ -1,4 +1,3 @@
-import React from "react";
 import { loginAction } from "./_actions/loginAction";
 
 const LoginSsr = () => {
